@@ -1,0 +1,26 @@
+{
+    "variables": {
+        "version": "0.1.0"
+    },
+    "builders": [
+        {
+            "communicator": "ssh",
+            "source_path": "ubuntu/focal64",
+            "provider": "virtualbox",
+            "type": "vagrant"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "./install.sh"
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "vagrant-cloud",
+            "box_tag": "ohleckes/lamp-dev-env",
+            "version": "{{user `version`}}"
+        }
+    ]
+}
